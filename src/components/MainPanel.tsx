@@ -1,4 +1,5 @@
 import { IoSearch } from "react-icons/io5";
+import RecipesGrid from "./RecipesGrid";
 
 const MainPanel = () => {
   return (
@@ -16,7 +17,7 @@ const MainPanel = () => {
         </form>
         <h1 className="font-bold text-3xl">Recommended Recipes</h1>
         <p className="text-sm">Popular choices</p>
-        <div>Recipes</div>
+        <RecipesGrid />
       </div>
     </div>
   );
