@@ -17,7 +17,7 @@ interface FetchResponse {
   hits: Recipes[];
 }
 
-const useRecipes = () => {
+const useRecipes = (query: string) => {
   const [recipes, setRecipes] = useState<Recipes[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,7 @@ const useRecipes = () => {
       .get<FetchResponse>("/recipes/v2", {
         signal: controller.signal,
         params: {
-          q: "chicken",
+          q: query,
         },
       })
       .then((res) => {
@@ -44,7 +44,7 @@ const useRecipes = () => {
         setIsLoading(false);
       });
     return () => controller.abort();
-  }, []);
+  }, [query]);
   return { recipes, error, isLoading };
 };
 
