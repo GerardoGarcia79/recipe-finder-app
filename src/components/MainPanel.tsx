@@ -9,7 +9,7 @@ interface Props {
 const MainPanel = ({ recipes }: Props) => {
   return (
     <div className="bg-[#f8f8fa] flex flex-grow justify-center">
-      <div className="w-full max-w-[1100px] flex flex-col bg-cyan-400">
+      <div className="w-full max-w-[1100px] flex flex-col">
         <form className="w-full">
           <div className="relative">
             <IoSearch className="absolute top-[23px] left-2" size="18px" />
@@ -21,7 +21,7 @@ const MainPanel = ({ recipes }: Props) => {
           </div>
         </form>
         <h1 className="font-bold text-3xl">Recommended Recipes</h1>
-        <p className="text-sm">Popular choices</p>
+        <p className="text-base">Popular choices</p>
         <RecipesGrid recipes={recipes} />
       </div>
     </div>

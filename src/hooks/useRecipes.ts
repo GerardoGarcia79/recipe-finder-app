@@ -5,6 +5,11 @@ import { CanceledError } from "axios";
 export interface Recipes {
   recipe: {
     label: string;
+    calories: number;
+    images: { REGULAR: { url: string } };
+    yield: number;
+    cuisineType: string[];
+    healthLabels: string[];
   };
 }
 
