@@ -23,6 +23,3 @@ const AsidePanel = () => {
 };
 
 export default AsidePanel;
-
-// import { AiFillHeart } from "react-icons/ai"; <AiFillHeart />
-// import { AiOutlineHeart } from "react-icons/ai"; <AiOutlineHeart />

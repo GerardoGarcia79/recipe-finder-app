@@ -25,7 +25,7 @@ const useRecipes = () => {
       .get<FetchResponse>("/recipes/v2", {
         signal: controller.signal,
         params: {
-          q: "banana",
+          q: "chicken",
         },
       })
       .then((res) => {
