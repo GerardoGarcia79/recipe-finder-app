@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <App /> },
-      { path: "/favorites", element: <FavoritesPage /> },
+      { path: "favorites", element: <FavoritesPage /> },
     ],
   },
 ]);

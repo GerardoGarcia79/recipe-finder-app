@@ -11,6 +11,7 @@ export interface Recipes {
     cuisineType: string[];
     healthLabels: string[];
   };
+  isFavorite?: boolean;
 }
 
 interface FetchResponse {
@@ -45,7 +46,8 @@ const useRecipes = (query: string) => {
       });
     return () => controller.abort();
   }, [query]);
-  return { recipes, error, isLoading };
+
+  return { recipes, error, isLoading, setRecipes };
 };
 
 export default useRecipes;

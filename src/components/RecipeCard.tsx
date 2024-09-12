@@ -1,14 +1,18 @@
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { MdOutlineSoupKitchen } from "react-icons/md";
 import { PiHeartbeat } from "react-icons/pi";
 import { Recipes } from "../hooks/useRecipes";
+import { useContext, useState } from "react";
+import { FavoriteRecipesContext } from "./FavoriteRecipesProvider";
 
 interface Props {
   recipe: Recipes;
 }
 
 const RecipeCard = ({ recipe }: Props) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const healthLabels = recipe.recipe.healthLabels.splice(0, 2);
+  const { toggleFavorite } = useContext(FavoriteRecipesContext);
 
   return (
     <div className="bg-gray-200 p-2 rounded-lg">
@@ -21,8 +25,18 @@ const RecipeCard = ({ recipe }: Props) => {
           <MdOutlineSoupKitchen className="ml-[2px]" />
           <p className="text-sm mr-[3px]">{recipe.recipe.yield} Servings</p>
         </span>
-        <button className="absolute top-1 right-1 bg-white w-7 h-7 rounded-full flex justify-center items-center opacity-75">
-          <AiOutlineHeart size="24px" />
+        <button
+          onClick={() => {
+            toggleFavorite(recipe.recipe.label);
+            setIsFavorite(!isFavorite);
+          }}
+          className="absolute top-1 right-1 bg-white w-7 h-7 rounded-full flex justify-center items-center opacity-75"
+        >
+          {isFavorite ? (
+            <AiFillHeart size="24px" />
+          ) : (
+            <AiOutlineHeart size="24px" />
+          )}
         </button>
       </div>
       <div>
@@ -53,6 +67,3 @@ const RecipeCard = ({ recipe }: Props) => {
 };
 
 export default RecipeCard;
-
-// import { AiFillHeart } from "react-icons/ai"; <AiFillHeart />
-// import { AiOutlineHeart } from "react-icons/ai"; <AiOutlineHeart />
