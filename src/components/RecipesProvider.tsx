@@ -10,7 +10,7 @@ interface RecipesContextType {
   recipes: Recipes[];
   isLoading: boolean;
   error: string;
-  handleSearchQuery: (query: string) => void;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const RecipesContext = React.createContext<RecipesContextType>(
@@ -21,13 +21,9 @@ const RecipesProvider = ({ children }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { error, isLoading, recipes } = useRecipes(searchQuery);
 
-  const handleSearchQuery = (query: string) => {
-    setSearchQuery(query);
-  };
-
   return (
     <RecipesContext.Provider
-      value={{ recipes, isLoading, error, handleSearchQuery }}
+      value={{ recipes, isLoading, error, setSearchQuery }}
     >
       {children}
     </RecipesContext.Provider>

@@ -1,19 +1,19 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
+import { RecipesContext } from "./RecipesProvider";
 
-interface Props {
-  handleSearchQuery: (query: string) => void;
-}
-
-const SearchInput = ({ handleSearchQuery }: Props) => {
+const SearchInput = () => {
   const input = useRef<HTMLInputElement>(null);
-
+  const { setSearchQuery } = useContext(RecipesContext);
   return (
     <form
       className="w-full"
       onSubmit={(event) => {
         event.preventDefault();
-        if (input.current) handleSearchQuery(input.current.value);
+        if (input.current) {
+          setSearchQuery(input.current.value);
+          input.current.value = "";
+        }
       }}
     >
       <div className="relative">

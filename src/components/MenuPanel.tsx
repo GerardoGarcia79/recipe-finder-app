@@ -2,7 +2,7 @@ import recipes from "../assets/recipes.png";
 import { FaHome } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const AsidePanel = () => {
+const MenuPanel = () => {
   return (
     <div className="md:w-1/6 bg-white p-4 flex flex-col ">
       <div className="flex justify-center">
@@ -22,4 +22,4 @@ const AsidePanel = () => {
   );
 };
 
-export default AsidePanel;
+export default MenuPanel;
