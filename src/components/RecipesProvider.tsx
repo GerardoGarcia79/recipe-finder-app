@@ -21,8 +21,6 @@ const RecipesProvider = ({ children }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { error, isLoading, recipes } = useRecipes(searchQuery);
 
-  console.log(recipes);
-
   return (
     <RecipesContext.Provider
       value={{ recipes, isLoading, error, setSearchQuery }}
