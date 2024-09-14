@@ -5,6 +5,8 @@ const RecipeDetailsPage = () => {
   const { id } = useParams();
   const { recipe, isLoading } = useRecipe(id!);
 
+  console.log(recipe);
+
   const cuisine = recipe?.recipe.cuisineType[0]
     ? recipe?.recipe.cuisineType[0].charAt(0).toUpperCase() +
       recipe?.recipe.cuisineType[0].slice(1)
@@ -24,6 +26,8 @@ const RecipeDetailsPage = () => {
         <p className="text-xl">Loading...</p>
       </div>
     );
+
+  if (!recipe) return;
 
   return (
     <div className="bg-[#f8f8fa] flex flex-grow justify-center md:min-h-screen md:items-center">
