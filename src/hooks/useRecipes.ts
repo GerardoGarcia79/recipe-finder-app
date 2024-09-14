@@ -10,8 +10,8 @@ export interface Recipes {
     yield: number;
     cuisineType: string[];
     healthLabels: string[];
+    uri: string;
   };
-  isFavorite?: boolean;
 }
 
 interface FetchResponse {

@@ -4,6 +4,7 @@ import { PiHeartbeat } from "react-icons/pi";
 import { Recipes } from "../hooks/useRecipes";
 import { useContext } from "react";
 import { FavoriteRecipesContext } from "./FavoriteRecipesProvider";
+import { Link } from "react-router-dom";
 
 interface Props {
   recipe: Recipes;
@@ -14,6 +15,9 @@ const RecipeCard = ({ recipe }: Props) => {
   const { toggleFavorite, favoriteRecipes } = useContext(
     FavoriteRecipesContext
   );
+
+  const index = recipe.recipe.uri.indexOf("recipe_");
+  const id = recipe.recipe.uri.slice(index);
 
   return (
     <div className="bg-gray-200 p-2 rounded-lg">
@@ -42,7 +46,9 @@ const RecipeCard = ({ recipe }: Props) => {
         </button>
       </div>
       <div>
-        <h2 className="font-bold text-lg">{recipe.recipe.label}</h2>
+        <Link to={`/recipe/${id}`}>
+          <h2 className="font-bold text-lg">{recipe.recipe.label}</h2>
+        </Link>
         <p className="mt-1 mb-1 text-base">
           {recipe.recipe.cuisineType[0].charAt(0).toUpperCase() +
             recipe.recipe.cuisineType[0].slice(1)}{" "}

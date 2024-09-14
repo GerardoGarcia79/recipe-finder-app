@@ -14,12 +14,8 @@ export interface Recipes {
   isFavorite?: boolean;
 }
 
-interface FetchResponse {
-  hits: Recipes[];
-}
-
-const useRecipe = (uri: string) => {
-  const [recipe, setRecipe] = useState<Recipes[]>([]);
+const useRecipe = (id: string) => {
+  const [recipe, setRecipe] = useState<Recipes>({} as Recipes);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,14 +24,11 @@ const useRecipe = (uri: string) => {
 
     setIsLoading(true);
     apiClient
-      .get<FetchResponse>("/recipes/v2/by-uri", {
+      .get<Recipes>(`/recipes/v2/${id}`, {
         signal: controller.signal,
-        params: {
-          uri: uri,
-        },
       })
       .then((res) => {
-        setRecipe(res.data.hits);
+        setRecipe(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -44,7 +37,7 @@ const useRecipe = (uri: string) => {
         setIsLoading(false);
       });
     return () => controller.abort();
-  }, [uri]);
+  }, [id]);
 
   return { recipe, error, isLoading, setRecipe };
 };
