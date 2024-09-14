@@ -3,7 +3,7 @@ import useRecipe from "../hooks/useRecipe";
 
 const RecipeDetailsPage = () => {
   const { id } = useParams();
-  const { recipe } = useRecipe(id!);
+  const { recipe, isLoading } = useRecipe(id!);
 
   const cuisine = recipe?.recipe.cuisineType[0]
     ? recipe?.recipe.cuisineType[0].charAt(0).toUpperCase() +
@@ -17,6 +17,13 @@ const RecipeDetailsPage = () => {
     ? recipe?.recipe.mealType[0].charAt(0).toUpperCase() +
       recipe?.recipe.mealType[0].slice(1)
     : "";
+
+  if (isLoading)
+    return (
+      <div className="bg-[#f8f8fa] flex flex-grow justify-center md:min-h-screen md:items-center">
+        <p className="text-xl">Loading...</p>
+      </div>
+    );
 
   return (
     <div className="bg-[#f8f8fa] flex flex-grow justify-center md:min-h-screen md:items-center">
