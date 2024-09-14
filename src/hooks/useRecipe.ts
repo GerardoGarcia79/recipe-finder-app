@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/apiClient";
 import { CanceledError } from "axios";
 
-export interface Recipes {
+export interface Recipe {
   recipe: {
     label: string;
     calories: number;
@@ -10,12 +10,15 @@ export interface Recipes {
     yield: number;
     cuisineType: string[];
     healthLabels: string[];
+    ingredientLines: string[];
+    dishType: string[];
+    mealType: string[];
+    url: string;
   };
-  isFavorite?: boolean;
 }
 
 const useRecipe = (id: string) => {
-  const [recipe, setRecipe] = useState<Recipes>({} as Recipes);
+  const [recipe, setRecipe] = useState<Recipe>();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,7 +27,7 @@ const useRecipe = (id: string) => {
 
     setIsLoading(true);
     apiClient
-      .get<Recipes>(`/recipes/v2/${id}`, {
+      .get<Recipe>(`/recipes/v2/${id}`, {
         signal: controller.signal,
       })
       .then((res) => {
