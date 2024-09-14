@@ -5,8 +5,6 @@ const RecipeDetailsPage = () => {
   const { id } = useParams();
   const { recipe, isLoading } = useRecipe(id!);
 
-  console.log(recipe);
-
   const cuisine = recipe?.recipe.cuisineType[0]
     ? recipe?.recipe.cuisineType[0].charAt(0).toUpperCase() +
       recipe?.recipe.cuisineType[0].slice(1)
