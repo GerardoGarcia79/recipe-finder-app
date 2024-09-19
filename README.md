@@ -48,3 +48,5 @@ export default tseslint.config({
   },
 })
 ```
+## About the project
+Your can see the project here: https://weather-app-silk-seven-95.vercel.app/
